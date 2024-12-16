@@ -45,7 +45,7 @@ jobs:
       - name: Generate scripts
         run: |
           source .venv/bin/activate
-          python cdxgen_src/test/diff/generate.py
+          python cdxgen_src/test/diff/generate.py -t typescript
 
       - name: Upload shell scripts generated as artifact
         uses: actions/upload-artifact@v4
@@ -69,7 +69,7 @@ jobs:
       - name: Test BOMs
         run: |
           source .venv/bin/activate
-          python cdxgen_src/test/diff/diff_tests.py --migrate-legacy
+          python cdxgen_src/test/diff/diff_tests.py --migrate-legacy -t typescript
           if test -f new_snapshots/diffs.json; then
             echo "status=FAILED" >> "$GITHUB_ENV"
           fi
